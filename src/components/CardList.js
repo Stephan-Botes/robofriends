@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from "./card";
-import {robots} from "./robots"; // Can also destructure it below as a prop
+import Card from "./Card";
+import {robots} from "../robots"; // Can also destructure it below as a prop
 
-const CardList = ({robots}) => {
+const CardList = ({ robots }) => {
 
     return (
         // Fragment containing an array entry

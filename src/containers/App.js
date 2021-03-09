@@ -1,8 +1,8 @@
 import React from 'react';
-import CardList from './cardList';
-import {robots} from './robots';
-import SearchBox from './searchBox';
-import './app.css';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import './App.css';
+import Scroll from '../components/Scroll';
 
 // Because this has states, its called a smart component
 class App extends React.Component {
@@ -33,25 +33,27 @@ class App extends React.Component {
     }
 
     render() {
+        const {robots, searchfield} = this.state
         // The condition that updates the array with the filter given via the searchfield
-        const filteredRobots = this.state.robots.filter(robot => {
-            return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+        const filteredRobots = robots.filter(robot => {
+            return robot.name.toLowerCase().includes(searchfield.toLowerCase());
         })
 
-        if (this.state.robots.length === 0) {
-            return <h1>Loading..</h1>
-        } else {
+        return !robots.length ?
+            <h1>Loading..</h1> :
             // The changed state of the App is the passed through CardList to update the display to the newly filtered elements
-            return (
+            (
                 <div className='tc'>
-                    <h1 className='f2'>RoboFriends</h1>
-                    {/*// Links the onSearchChange function to the prop of SearchBox const*/}
+                    <h1 className='f2 ma3'>RoboFriends</h1>
+                    {/*Links the onSearchChange function to the prop of SearchBox const*/}
                     <SearchBox searchChange={this.onSearchChange}/>
-                    {/*// pass the robots array in current state as a prop for CardList*/}
-                    <CardList robots={filteredRobots}/>
+                    {/*Wraps the cardList as its child*/}
+                    <Scroll>
+                        {/*pass the robots array in current state as a prop for CardList*/}
+                        <CardList robots={filteredRobots}/>
+                    </Scroll>
                 </div>
             );
-        }
     }
 }
 
