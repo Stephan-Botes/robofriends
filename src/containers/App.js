@@ -3,6 +3,7 @@ import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import './App.css';
 import Scroll from '../components/Scroll';
+import ErrorBoundry from '../components/ErrorBoundry';
 
 // Because this has states, its called a smart component
 class App extends React.Component {
@@ -49,8 +50,10 @@ class App extends React.Component {
                     <SearchBox searchChange={this.onSearchChange}/>
                     {/*Wraps the cardList as its child*/}
                     <Scroll>
-                        {/*pass the robots array in current state as a prop for CardList*/}
-                        <CardList robots={filteredRobots}/>
+                        <ErrorBoundry>
+                            {/*pass the robots array in current state as a prop for CardList*/}
+                            <CardList robots={filteredRobots}/>
+                        </ErrorBoundry>
                     </Scroll>
                 </div>
             );
