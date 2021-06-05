@@ -3,9 +3,7 @@ import Card from "../Card/Card";
 
 // Deconstructed prop (robots)
 const CardList = ({robots}) => {
-    if (true) {
-        throw new Error("whoops")
-    }
+
     return (
         <div>
             {
