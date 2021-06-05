@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CardList from "../../components/CardList/CardList";
 import SearchBox from "../../components/Searchbox/SearchBox";
 import Scroll from "../../components/Scroll/Scroll";
+import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary";
 import './App.css';
 
 class App extends Component {
@@ -50,7 +51,9 @@ class App extends Component {
                     {/*User defined component used to wrap other components.
                     The wrapped components are then part of their props.children*/}
                     <Scroll>
-                        <CardList robots={filteredRobots}/>
+                        <ErrorBoundary>
+                            <CardList robots={filteredRobots}/>
+                        </ErrorBoundary>
                     </Scroll>
                 </div>
             );
